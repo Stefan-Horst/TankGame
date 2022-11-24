@@ -1,4 +1,4 @@
-extends Sprite
+extends KinematicBody2D
 
 var speed = 200
 var angular_speed = 1
