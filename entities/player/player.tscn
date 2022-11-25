@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://entities/player/player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://entities/player/turret.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -10,8 +11,21 @@ extents = Vector2( 32, 32 )
 position = Vector2( 502, 296 )
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="SpriteHull" type="Sprite" parent="."]
+scale = Vector2( 0.8, 1 )
+texture = ExtResource( 2 )
+
+[node name="SpriteTurret" type="Sprite" parent="SpriteHull"]
+position = Vector2( 0, -5 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="SpriteGun" type="Sprite" parent="SpriteHull/SpriteTurret"]
+position = Vector2( 0, -62 )
+scale = Vector2( 0.2, 1 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.8, 1 )
 shape = SubResource( 1 )
