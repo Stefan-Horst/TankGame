@@ -15,17 +15,17 @@ script = ExtResource( 1 )
 scale = Vector2( 0.8, 1 )
 texture = ExtResource( 2 )
 
-[node name="SpriteTurret" type="Sprite" parent="SpriteHull"]
-position = Vector2( 0, -5 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-script = ExtResource( 3 )
-
-[node name="SpriteGun" type="Sprite" parent="SpriteHull/SpriteTurret"]
-position = Vector2( 0, -62 )
-scale = Vector2( 0.2, 1 )
-texture = ExtResource( 2 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 0.8, 1 )
 shape = SubResource( 1 )
+
+[node name="SpriteTurret" type="Sprite" parent="."]
+position = Vector2( 0, -5 )
+scale = Vector2( 0.4, 0.5 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="SpriteGun" type="Sprite" parent="SpriteTurret"]
+position = Vector2( 0, -62 )
+scale = Vector2( 0.2, 1 )
+texture = ExtResource( 2 )
