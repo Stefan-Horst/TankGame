@@ -8,6 +8,14 @@ var velocity = Vector2.UP.rotated(rotation) * speed
 func _physics_process(_delta):
 	var collision = move_and_collide(velocity)
 	if collision:
+		
+		# Collision of projectile with other KinematicBody2D instance
+		# TODO: collision of 2 projectiles? Maybe change enemy to layer 3?
+		if collision.collider.get_class() == "KinematicBody2D":
+			# TODO: use Signals instead?
+			collision.collider._on_Npc_destroyed()
+			queue_free()
+		
 		## reflect projectiles that hit walls
 		velocity = velocity.bounce(collision.normal)
 		

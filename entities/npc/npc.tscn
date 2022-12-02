@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://entities/npc/npc.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 2
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 2
+
+[sub_resource type="CanvasItemMaterial" id=4]
+blend_mode = 2
+
+[node name="Npc" type="KinematicBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="SpriteHull" type="Sprite" parent="."]
+material = SubResource( 2 )
+scale = Vector2( 0.8, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+scale = Vector2( 0.8, 1 )
+shape = SubResource( 1 )
+
+[node name="SpriteTurret" type="Sprite" parent="."]
+material = SubResource( 3 )
+position = Vector2( 0, -5 )
+scale = Vector2( 0.4, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="SpriteGun" type="Sprite" parent="SpriteTurret"]
+material = SubResource( 4 )
+position = Vector2( 0, -62 )
+scale = Vector2( 0.2, 1 )
+texture = ExtResource( 2 )
+
+[node name="PosProjectile" type="Position2D" parent="SpriteTurret/SpriteGun"]
+position = Vector2( 0, -30 )
+
+[connection signal="destroyed" from="." to="." method="_on_Npc_destroyed"]
