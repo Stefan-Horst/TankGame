@@ -22,7 +22,7 @@ func _physics_process(delta):
 		direction = -1
 	if Input.is_action_pressed("ui_right"):
 		direction = 1
-
+	
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
 		velocity = Vector2.UP.rotated(rotation) * speed
@@ -33,9 +33,9 @@ func _physics_process(delta):
 	
 	# moves the player and causes them to slide along walls
 	move_and_slide(velocity) #warning-ignore:RETURN_VALUE_DISCARDED
-
+	
 	rotation += angular_speed * direction * delta
-
+	
 	## player turret rotation
 	turret.look_at(get_global_mouse_position())
 	turret.rotation_degrees += 90 #either this fix or rotate sprite image
