@@ -14,6 +14,11 @@ script = ExtResource( 3 )
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
 position = Vector2( 631, 530 )
 
+[node name="TimerCooldown" type="Timer" parent="Game/Player"]
+process_mode = 0
+wait_time = 0.1
+one_shot = true
+
 [node name="Enemies" type="Node2D" parent="Game"]
 
 [node name="Map" parent="Game" instance=ExtResource( 2 )]
@@ -30,3 +35,4 @@ margin_bottom = 40.0
 [node name="Networking" type="Node" parent="."]
 
 [connection signal="shoot_projectile" from="Game/Player" to="Game" method="_on_Player_shoot_projectile"]
+[connection signal="timeout" from="Game/Player/TimerCooldown" to="Game" method="_on_TimerCooldown_timeout"]
