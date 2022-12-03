@@ -2,7 +2,7 @@ extends Node2D
 
 var player_can_shoot = true
 
-onready var cooldown_timer = $Player/TimerCooldown
+onready var cooldown_timer = $Player/TimerGunCooldown
 
 func _on_Player_shoot_projectile(Projectile, location, direction):
 	if player_can_shoot:
@@ -10,7 +10,9 @@ func _on_Player_shoot_projectile(Projectile, location, direction):
 		
 		var p = Projectile.instance()
 		add_child(p)
+		p.connect("entity_hit", $Npc, "_on_Npc_entity_hit")
 		
+		p.emitter = "player"
 		p.position = location
 		p.rotation = direction
 		p.velocity = p.velocity.rotated(direction)

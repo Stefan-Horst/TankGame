@@ -19,7 +19,8 @@ onready var projectile_pos = turret.get_node("SpriteGun/PosProjectile")
 func _physics_process(delta):
 	pass
 
-
-func _on_Npc_destroyed():
-	print("Hit!")
-	queue_free()
+func _on_Npc_entity_hit(projectile_emitter, hit_entity):
+	print(hit_entity.name + self.name)
+	if hit_entity.name == self.name and projectile_emitter == "player":
+		print("Hit!")
+		queue_free()
