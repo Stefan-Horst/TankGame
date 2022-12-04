@@ -21,5 +21,6 @@ func _on_Player_shoot_projectile(Projectile, location, direction):
 		cooldown_timer.wait_time = player.cooldown
 		cooldown_timer.start()
 
+
 func _on_TimerCooldown_timeout():
 	player_can_shoot = true
