@@ -7,7 +7,7 @@ extends Actor
 func _physics_process(delta):
 	pass
 
-func _on_Npc_entity_hit(projectile_emitter, hit_entity):
 	print(hit_entity.name + self.name)
+func _on_entity_hit(projectile_emitter, hit_entity):
 	if hit_entity.name == self.name and projectile_emitter == "player":
 		queue_free()
