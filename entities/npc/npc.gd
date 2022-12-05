@@ -9,5 +9,5 @@ func _physics_process(delta):
 
 
 func _on_entity_hit(projectile_emitter, hit_entity):
-	if hit_entity.name == self.name and projectile_emitter == "player":
+	if hit_entity.name == self.name and projectile_emitter == "Player":
 		queue_free()

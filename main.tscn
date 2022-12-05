@@ -21,10 +21,13 @@ one_shot = true
 
 [node name="Enemies" type="Node2D" parent="Game"]
 
-[node name="Map" parent="Game" instance=ExtResource( 2 )]
-
-[node name="Npc" parent="Game" instance=ExtResource( 4 )]
+[node name="Npc" parent="Game/Enemies" instance=ExtResource( 4 )]
 position = Vector2( 1075, 443 )
+
+[node name="Npc2" parent="Game/Enemies" instance=ExtResource( 4 )]
+position = Vector2( 353, 617 )
+
+[node name="Map" parent="Game" instance=ExtResource( 2 )]
 
 [node name="Menus" type="CanvasLayer" parent="."]
 
@@ -34,5 +37,5 @@ margin_bottom = 40.0
 
 [node name="Networking" type="Node" parent="."]
 
-[connection signal="shoot_projectile" from="Game/Player" to="Game" method="_on_Player_shoot_projectile"]
+[connection signal="shoot_projectile" from="Game/Player" to="Game" method="_on_shoot_projectile"]
 [connection signal="timeout" from="Game/Player/TimerGunCooldown" to="Game" method="_on_TimerCooldown_timeout"]

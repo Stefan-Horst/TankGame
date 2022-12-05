@@ -34,9 +34,9 @@ func _physics_process(delta):
 	## player combat
 	if Input.is_action_just_pressed("ui_select"):
 		var turret_rotation = turret.rotation + rotation
-		emit_signal("shoot_projectile", Projectile, projectile_pos.global_position, turret_rotation)
+		emit_signal("shoot_projectile", Projectile, self, projectile_pos.global_position, turret_rotation)
 
 
 func _on_entity_hit(projectile_emitter, hit_entity):
-	if hit_entity.name == self.name and projectile_emitter == "npc": #TODO
+	if hit_entity.name == self.name and projectile_emitter == "Npc": #TODO
 		queue_free()
