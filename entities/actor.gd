@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 class_name Actor
 
-signal shoot_projectile(projectile, location, direction)
+# can be moved to npc if it will be the only class inheriting actor (excluding player)
+signal shoot_projectile(projectile, caller, location, direction)
 
 var speed = 200
 var angular_speed = 1
