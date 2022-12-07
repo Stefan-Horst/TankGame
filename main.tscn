@@ -23,6 +23,7 @@ visible = false
 
 [node name="Networking" type="Node" parent="."]
 
+[connection signal="quit" from="Menus/MainMenu" to="." method="_on_MainMenu_quit"]
 [connection signal="settings_menu" from="Menus/MainMenu" to="Menus" method="_on_MainMenu_settings_menu"]
 [connection signal="start_game" from="Menus/MainMenu" to="." method="_on_MainMenu_start_game"]
 [connection signal="settings_back" from="Menus/Settings" to="Menus" method="_on_Settings_settings_back"]

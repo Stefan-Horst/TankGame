@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://menus/settings.gd" type="Script" id=1]
+
+[sub_resource type="InputEventAction" id=1]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -20,6 +26,12 @@ anchor_bottom = 0.05
 margin_right = 12.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 100, 50 )
+focus_neighbour_left = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode/BtnSteeringMode")
+focus_neighbour_right = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode/BtnSteeringMode")
+focus_neighbour_bottom = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode/BtnSteeringMode")
+focus_next = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode/BtnSteeringMode")
+focus_previous = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/Button2")
+shortcut = SubResource( 2 )
 text = "Back"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -40,66 +52,72 @@ text = "Settings"
 align = 1
 valign = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_top = 180.0
 margin_right = 800.0
 margin_bottom = 290.0
+rect_min_size = Vector2( 250, 0 )
+custom_constants/margin_right = 250
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_right = 546.0
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+margin_right = 550.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 custom_constants/separation = 30
 alignment = 1
 
-[node name="VBoxContainerSteeringMode" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 546.0
+[node name="VBConSteeringMode" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 550.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_constants/separation = 30
 alignment = 2
 
-[node name="LabelSteeringMode" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainerSteeringMode"]
-margin_left = 319.0
+[node name="LabelSteeringMode" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode"]
+margin_left = 252.0
 margin_top = 13.0
-margin_right = 416.0
+margin_right = 420.0
 margin_bottom = 27.0
-text = "Steering mode:"
+text = "Backwards steering mode:"
 
-[node name="BtnSteeringMode" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainerSteeringMode"]
-margin_left = 446.0
-margin_right = 546.0
+[node name="BtnSteeringMode" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode"]
+unique_name_in_owner = true
+margin_left = 450.0
+margin_right = 550.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
+focus_neighbour_left = NodePath("../../../../../BtnBack")
+focus_neighbour_top = NodePath("../../../../../BtnBack")
+focus_neighbour_bottom = NodePath("../../VBoxContainer2/Button2")
+focus_next = NodePath("../../VBoxContainer2/Button2")
+focus_previous = NodePath("../../../../../BtnBack")
 text = "normal"
 
-[node name="VBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 margin_top = 70.0
-margin_right = 546.0
+margin_right = 550.0
 margin_bottom = 110.0
 custom_constants/separation = 30
 alignment = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 356.0
+[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_left = 360.0
 margin_top = 13.0
-margin_right = 416.0
+margin_right = 420.0
 margin_bottom = 27.0
 text = "Setting 2:"
 
-[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 446.0
-margin_right = 546.0
+[node name="Button2" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_left = 450.0
+margin_right = 550.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
+focus_neighbour_top = NodePath("../../VBConSteeringMode/BtnSteeringMode")
+focus_neighbour_bottom = NodePath("../../../../../BtnBack")
+focus_next = NodePath("../../../../../BtnBack")
+focus_previous = NodePath("../../VBConSteeringMode/BtnSteeringMode")
 text = "Button2"
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 550.0
-margin_right = 800.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 250, 0 )
-
 [connection signal="pressed" from="BtnBack" to="." method="_on_BtnBack_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/VBoxContainerSteeringMode/BtnSteeringMode" to="." method="_on_BtnSteeringMode_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode/BtnSteeringMode" to="." method="_on_BtnSteeringMode_pressed"]
