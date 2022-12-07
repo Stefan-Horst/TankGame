@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menus.gd" type="Script" id=1]
 [ext_resource path="res://game.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menus/pause.tscn" type="PackedScene" id=3]
 [ext_resource path="res://main.gd" type="Script" id=5]
 [ext_resource path="res://menus/title.tscn" type="PackedScene" id=6]
 [ext_resource path="res://menus/settings.tscn" type="PackedScene" id=7]
@@ -21,9 +22,15 @@ script = ExtResource( 1 )
 [node name="Settings" parent="Menus" instance=ExtResource( 7 )]
 visible = false
 
+[node name="Pause" parent="Menus" instance=ExtResource( 3 )]
+visible = false
+
 [node name="Networking" type="Node" parent="."]
 
+[connection signal="menu_pause" from="Game" to="Menus" method="_on_show_pause_menu"]
 [connection signal="quit" from="Menus/MainMenu" to="." method="_on_MainMenu_quit"]
 [connection signal="settings_menu" from="Menus/MainMenu" to="Menus" method="_on_MainMenu_settings_menu"]
 [connection signal="start_game" from="Menus/MainMenu" to="." method="_on_MainMenu_start_game"]
 [connection signal="settings_back" from="Menus/Settings" to="Menus" method="_on_Settings_settings_back"]
+[connection signal="menu_pause" from="Menus/Pause" to="Menus" method="_on_show_pause_menu"]
+[connection signal="quit_game" from="Menus/Pause" to="." method="_on_Pause_quit_game"]

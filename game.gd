@@ -1,10 +1,17 @@
 extends Node2D
 
+signal menu_pause()
+
 var player_can_shoot = true
 
 onready var player = $Player
 onready var cooldown_timer = player.get_node("TimerGunCooldown")
 onready var enemies = $Enemies
+
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_cancel") and self.visible:
+		emit_signal("menu_pause")
+
 
 func _on_shoot_projectile(Projectile, caller, location, direction):
 	## let player only shoot if gun not on cooldown
