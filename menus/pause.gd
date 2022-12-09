@@ -5,6 +5,7 @@ signal quit_game()
 
 onready var btn_continue = $"%BtnContinue"
 
+
 func _on_BtnContinue_pressed():
 	# handle visibility of pause menu in menus.gd
 	emit_signal("menu_pause")

@@ -6,6 +6,7 @@ onready var main_menu = $MainMenu
 onready var settings_menu = $Settings
 onready var pause_menu = $Pause
 
+
 func _on_MainMenu_settings_menu():
 	main_menu.visible = false
 	settings_menu.visible = true

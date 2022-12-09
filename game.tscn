@@ -9,6 +9,8 @@
 visible = false
 script = ExtResource( 6 )
 
+[node name="Map" parent="." instance=ExtResource( 3 )]
+
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 631, 530 )
 
@@ -26,8 +28,6 @@ position = Vector2( 1075, 443 )
 
 [node name="Npc2" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 353, 617 )
-
-[node name="Map" parent="." instance=ExtResource( 3 )]
 
 [connection signal="shoot_projectile" from="Player" to="." method="_on_shoot_projectile"]
 [connection signal="timeout" from="Player/TimerGunCooldown" to="." method="_on_TimerCooldown_timeout"]

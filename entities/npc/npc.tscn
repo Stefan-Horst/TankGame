@@ -1,21 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://entities/npc/npc.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[sub_resource type="CanvasItemMaterial" id=2]
-blend_mode = 2
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
-[sub_resource type="CanvasItemMaterial" id=3]
-blend_mode = 2
-
-[sub_resource type="CanvasItemMaterial" id=4]
-blend_mode = 2
-
 [node name="Npc" type="KinematicBody2D"]
+modulate = Color( 1, 0.117647, 0.117647, 1 )
 collision_layer = 15
 collision_mask = 15
 script = ExtResource( 1 )
@@ -24,7 +16,6 @@ __meta__ = {
 }
 
 [node name="SpriteHull" type="Sprite" parent="."]
-material = SubResource( 2 )
 scale = Vector2( 0.8, 1 )
 texture = ExtResource( 2 )
 
@@ -34,13 +25,11 @@ scale = Vector2( 0.8, 1 )
 shape = SubResource( 1 )
 
 [node name="SpriteTurret" type="Sprite" parent="."]
-material = SubResource( 3 )
 position = Vector2( 0, -5 )
 scale = Vector2( 0.4, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="SpriteGun" type="Sprite" parent="SpriteTurret"]
-material = SubResource( 4 )
 position = Vector2( 0, -62 )
 scale = Vector2( 0.2, 1 )
 texture = ExtResource( 2 )

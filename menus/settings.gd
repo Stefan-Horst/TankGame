@@ -9,6 +9,7 @@ var steering_mode = false
 
 onready var btn_steering_mode = $"%BtnSteeringMode"
 
+
 func _on_BtnSteeringMode_pressed():
 	steering_mode = not steering_mode
 	if steering_mode:

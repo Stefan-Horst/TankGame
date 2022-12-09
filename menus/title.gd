@@ -6,6 +6,7 @@ signal settings_menu()
 
 onready var btn_start_game = $"%BtnStartGame"
 
+
 func _on_BtnStartGame_pressed():
 	emit_signal("start_game")
 

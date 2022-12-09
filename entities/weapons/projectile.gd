@@ -9,6 +9,7 @@ var amount_bounces = 0
 var emitter = "" # entity that shoots the projectile
 var velocity = Vector2.UP.rotated(rotation) * speed
 
+
 func _physics_process(_delta):
 	var collision = move_and_collide(velocity)
 	if collision:

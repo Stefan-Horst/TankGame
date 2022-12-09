@@ -4,6 +4,7 @@ extends Actor
 # value 1 makes it steer in opposite direction when going backwards
 var backwards_steering_mode = 0
 
+
 # _physics_process is computed in fixed intervals, which is required for accurate
 # computation of move_and_slide()
 func _physics_process(delta):

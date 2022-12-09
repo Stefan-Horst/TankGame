@@ -5,6 +5,7 @@ onready var menus = $Menus
 onready var menu_main = $Menus/MainMenu
 onready var menu_pause = $Menus/Pause
 
+
 func _ready():
 	menu_main.btn_start_game.grab_focus()
 

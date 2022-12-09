@@ -8,6 +8,7 @@ onready var player = $Player
 onready var cooldown_timer = player.get_node("TimerGunCooldown")
 onready var enemies = $Enemies
 
+
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel") and self.visible:
 		emit_signal("menu_pause")
