@@ -26,5 +26,5 @@ func _on_show_pause_menu():
 		pause_menu.btn_continue.grab_focus()
 	else:
 		pause_menu.visible = false
-		
+	
 	pause_menu_active = not pause_menu_active
