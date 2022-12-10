@@ -1,8 +1,12 @@
 extends Actor
 
+signal player_destroyed()
+
 # value 0 makes tank steer in same direction no matter if it is going forwards or backwards
 # value 1 makes it steer in opposite direction when going backwards
 var backwards_steering_mode = 0
+# init by game.gd
+var enemies = []
 
 
 # _physics_process is computed in fixed intervals, which is required for accurate
@@ -39,5 +43,8 @@ func _physics_process(delta):
 
 
 func _on_entity_hit(projectile_emitter, hit_entity):
-	if hit_entity.name == self.name and projectile_emitter == "Npc": #TODO
-		queue_free()
+	if hit_entity.name == self.name and projectile_emitter in enemies:
+		## move dead npc out of map
+		remove_from_game()
+		
+		emit_signal("player_destroyed")

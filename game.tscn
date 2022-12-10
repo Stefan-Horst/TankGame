@@ -6,7 +6,6 @@
 [ext_resource path="res://game.gd" type="Script" id=6]
 
 [node name="Game" type="Node2D"]
-visible = false
 script = ExtResource( 6 )
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
@@ -19,8 +18,6 @@ process_mode = 0
 wait_time = 0.1
 one_shot = true
 
-[node name="UI" type="CanvasLayer" parent="Player"]
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Npc" parent="Enemies" instance=ExtResource( 5 )]
@@ -29,5 +26,13 @@ position = Vector2( 1075, 443 )
 [node name="Npc2" parent="Enemies" instance=ExtResource( 5 )]
 position = Vector2( 353, 617 )
 
+[node name="Npc3" parent="Enemies" instance=ExtResource( 5 )]
+position = Vector2( 253, 572 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
 [connection signal="shoot_projectile" from="Player" to="." method="_on_shoot_projectile"]
 [connection signal="timeout" from="Player/TimerGunCooldown" to="." method="_on_TimerCooldown_timeout"]
+[connection signal="enemy_destroyed" from="Enemies/Npc" to="." method="_on_enemy_destroyed"]
+[connection signal="enemy_destroyed" from="Enemies/Npc2" to="." method="_on_enemy_destroyed"]
+[connection signal="enemy_destroyed" from="Enemies/Npc3" to="." method="_on_enemy_destroyed"]
