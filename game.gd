@@ -8,21 +8,16 @@ const MAX_PLAYERS = 4
 var enemies = []
 var enemies_alive = []
 var spawn_positions = []
-var actors = [] # all tanks
-#var amount_players = 1
+var actors = [] # all tanks in the game
 var player_can_shoot = true
-#var rng = RandomNumberGenerator.new()
 
 onready var map = $Map
 onready var player = $Player
 onready var cooldown_timer = player.get_node("TimerGunCooldown")
-onready var enemies_node = $Enemies
 
 
 func _ready():
-	## init list enemies
-	for i in enemies_node.get_child_count():
-		enemies.append(enemies_node.get_child(i))
+	enemies = get_tree().get_nodes_in_group("enemy")
 
 
 func _process(_delta):
@@ -97,14 +92,6 @@ func _on_shoot_projectile(Projectile, caller, location, direction):
 		cooldown_timer.start()
 	else:
 		p.connect("entity_hit", player, "_on_entity_hit")
-
-
-## return list of all child nodes of node "Enemies"
-"""func _get_all_enemies():
-	var enemies_list = []
-	for i in enemies_node.get_child_count():
-		enemies_list.append(enemies_node.get_child(i))
-	return enemies_list"""
 
 
 func _on_enemy_destroyed(caller):

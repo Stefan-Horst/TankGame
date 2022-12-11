@@ -44,7 +44,7 @@ func _physics_process(delta):
 
 func _on_entity_hit(projectile_emitter, hit_entity):
 	if hit_entity.name == self.name and projectile_emitter in enemies:
-		## move dead npc out of map
+		## move dead player out of map
 		remove_from_game()
 		
 		emit_signal("player_destroyed")
