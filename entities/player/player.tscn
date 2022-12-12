@@ -10,6 +10,9 @@ extents = Vector2( 32, 32 )
 collision_layer = 2
 collision_mask = 11
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="SpriteHull" type="Sprite" parent="."]
 scale = Vector2( 0.8, 1 )

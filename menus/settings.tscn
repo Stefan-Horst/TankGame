@@ -2,11 +2,11 @@
 
 [ext_resource path="res://menus/settings.gd" type="Script" id=1]
 
-[sub_resource type="InputEventAction" id=1]
+[sub_resource type="InputEventAction" id=3]
 action = "ui_cancel"
 
 [sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
+shortcut = SubResource( 3 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -26,7 +26,7 @@ anchor_bottom = 0.05
 margin_right = 12.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 100, 50 )
-focus_neighbour_left = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode/BtnSteeringMode")
+focus_neighbour_top = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer2/Button2")
 focus_neighbour_right = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode/BtnSteeringMode")
 focus_neighbour_bottom = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode/BtnSteeringMode")
 focus_next = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/VBConSteeringMode/BtnSteeringMode")
@@ -113,6 +113,7 @@ margin_left = 450.0
 margin_right = 550.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 100, 40 )
+focus_neighbour_left = NodePath("../../../../../BtnBack")
 focus_neighbour_top = NodePath("../../VBConSteeringMode/BtnSteeringMode")
 focus_neighbour_bottom = NodePath("../../../../../BtnBack")
 focus_next = NodePath("../../../../../BtnBack")
