@@ -1,0 +1,147 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://menus/host.gd" type="Script" id=1]
+
+[sub_resource type="InputEventAction" id=1]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.207843, 0.309804, 1 )
+
+[node name="BtnBack" type="Button" parent="."]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.05
+anchor_bottom = 0.05
+margin_right = 12.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 50 )
+focus_neighbour_top = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/BtnHost")
+focus_neighbour_right = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/HBConName/LineEditName")
+focus_neighbour_bottom = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/HBConName/LineEditName")
+focus_next = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/HBConName/LineEditName")
+focus_previous = NodePath("../VBoxContainer/MarginContainer/VBoxContainer/BtnHost")
+shortcut = SubResource( 2 )
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -400.0
+margin_top = 50.0
+margin_right = 400.0
+margin_bottom = -100.0
+custom_constants/separation = 100
+alignment = 1
+
+[node name="LabelTitle" type="Label" parent="VBoxContainer"]
+margin_top = 147.0
+margin_right = 800.0
+margin_bottom = 227.0
+rect_min_size = Vector2( 0, 80 )
+text = "Host Game"
+align = 1
+valign = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 327.0
+margin_right = 800.0
+margin_bottom = 423.0
+custom_constants/margin_right = 200
+custom_constants/margin_left = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+margin_left = 200.0
+margin_right = 600.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 3
+custom_constants/separation = 30
+alignment = 1
+
+[node name="HBConName" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_right = 400.0
+margin_bottom = 26.0
+custom_constants/separation = 10
+
+[node name="LabelName" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/HBConName"]
+margin_top = 6.0
+margin_right = 120.0
+margin_bottom = 20.0
+text = "Enter lobby name: "
+
+[node name="LineEditName" type="LineEdit" parent="VBoxContainer/MarginContainer/VBoxContainer/HBConName"]
+unique_name_in_owner = true
+margin_left = 130.0
+margin_right = 400.0
+margin_bottom = 26.0
+focus_neighbour_left = NodePath("../../../../../BtnBack")
+focus_neighbour_top = NodePath("../../../../../BtnBack")
+focus_neighbour_bottom = NodePath("../../BtnHost")
+focus_next = NodePath("../../BtnHost")
+focus_previous = NodePath("../../../../../BtnBack")
+size_flags_horizontal = 3
+max_length = 30
+clear_button_enabled = true
+placeholder_text = "  MyLobby"
+caret_blink = true
+
+[node name="BtnHost" type="Button" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 400.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 100, 40 )
+focus_neighbour_left = NodePath("../../../../BtnBack")
+focus_neighbour_top = NodePath("../HBConName/LineEditName")
+focus_neighbour_bottom = NodePath("../../../../BtnBack")
+focus_next = NodePath("../../../../BtnBack")
+focus_previous = NodePath("../HBConName/LineEditName")
+text = "Host Game!"
+
+[node name="HBConAddress" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+margin_left = 440.0
+margin_top = 506.0
+margin_right = 840.0
+margin_bottom = 502.0
+custom_constants/separation = 10
+
+[node name="LabelAddress" type="Label" parent="HBConAddress"]
+margin_top = 5.0
+margin_right = 156.0
+margin_bottom = 19.0
+text = "Your lobby's IP address: "
+
+[node name="LineEditAddress" type="LineEdit" parent="HBConAddress"]
+unique_name_in_owner = true
+margin_left = 166.0
+margin_right = 400.0
+margin_bottom = 24.0
+focus_neighbour_left = NodePath("../../BtnBack")
+focus_neighbour_top = NodePath("../../VBoxContainer/MarginContainer/VBoxContainer/BtnHost")
+focus_neighbour_bottom = NodePath("../../BtnBack")
+focus_next = NodePath("../../BtnBack")
+focus_previous = NodePath("../../VBoxContainer/MarginContainer/VBoxContainer/BtnHost")
+size_flags_horizontal = 3
+align = 1
+max_length = 30
+editable = false
+expand_to_text_length = true
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+placeholder_text = "error getting your IP address"
+
+[connection signal="pressed" from="BtnBack" to="." method="_on_BtnBack_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/BtnHost" to="." method="_on_BtnHost_pressed"]

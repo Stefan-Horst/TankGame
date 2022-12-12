@@ -1,8 +1,7 @@
 extends Control
 
 signal change_steering_mode(mode)
-## back to main menu
-signal settings_back()
+signal back_main_menu(caller)
 
 # normal = false; inverted = true
 var steering_mode = false
@@ -20,4 +19,4 @@ func _on_BtnSteeringMode_pressed():
 
 
 func _on_BtnBack_pressed():
-	emit_signal("settings_back")
+	emit_signal("back_main_menu", self)

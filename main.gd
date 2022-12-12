@@ -2,12 +2,12 @@ extends Node
 
 onready var game = $Game
 onready var menus = $Menus
-onready var menu_main = $Menus/MainMenu
-onready var menu_pause = $Menus/Pause
+onready var menu_main = menus.get_node("MainMenu")
+onready var menu_pause = menus.get_node("IngamePause")
 
 
 func _ready():
-	menu_main.btn_start_game.grab_focus()
+	menu_main.btn_join_game.grab_focus()
 
 
 func _on_MainMenu_start_game():
