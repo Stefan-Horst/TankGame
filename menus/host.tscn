@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://menus/host.gd" type="Script" id=1]
 
@@ -7,6 +7,13 @@ action = "ui_cancel"
 
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.270588, 0.270588, 0.270588, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.113725, 0.113725, 0.113725, 1 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -111,37 +118,44 @@ text = "Host Game!"
 
 [node name="HBConAddress" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
-visible = false
 margin_left = 440.0
 margin_top = 506.0
 margin_right = 840.0
 margin_bottom = 502.0
-custom_constants/separation = 10
+rect_min_size = Vector2( 0, 22 )
+custom_constants/separation = 0
+
+[node name="LabelAddressInfo" type="Label" parent="HBConAddress"]
+margin_right = 164.0
+margin_bottom = 22.0
+size_flags_vertical = 1
+text = "Your lobby's IP address:   "
+valign = 1
 
 [node name="LabelAddress" type="Label" parent="HBConAddress"]
-margin_top = 5.0
-margin_right = 156.0
-margin_bottom = 19.0
-text = "Your lobby's IP address: "
-
-[node name="LineEditAddress" type="LineEdit" parent="HBConAddress"]
 unique_name_in_owner = true
-margin_left = 166.0
+margin_left = 164.0
+margin_right = 358.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_styles/normal = SubResource( 3 )
+text = "Error getting IP, try again"
+align = 1
+valign = 1
+
+[node name="BtnCopy" type="Button" parent="HBConAddress"]
+unique_name_in_owner = true
+margin_left = 358.0
 margin_right = 400.0
-margin_bottom = 24.0
+margin_bottom = 22.0
 focus_neighbour_left = NodePath("../../BtnBack")
 focus_neighbour_top = NodePath("../../VBoxContainer/MarginContainer/VBoxContainer/BtnHost")
-focus_neighbour_bottom = NodePath("../../BtnBack")
+focus_neighbour_bottom = NodePath("../../VBoxContainer/MarginContainer/VBoxContainer/HBConName/LineEditName")
 focus_next = NodePath("../../BtnBack")
 focus_previous = NodePath("../../VBoxContainer/MarginContainer/VBoxContainer/BtnHost")
-size_flags_horizontal = 3
-align = 1
-max_length = 30
-editable = false
-expand_to_text_length = true
-virtual_keyboard_enabled = false
-middle_mouse_paste_enabled = false
-placeholder_text = "error getting your IP address"
+text = "copy"
 
 [connection signal="pressed" from="BtnBack" to="." method="_on_BtnBack_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/BtnHost" to="." method="_on_BtnHost_pressed"]
+[connection signal="pressed" from="HBConAddress/BtnCopy" to="." method="_on_BtnCopy_pressed"]

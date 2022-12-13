@@ -1,5 +1,6 @@
 extends Node
 
+# public ip address
 var ip_address = ""
 
 
