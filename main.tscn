@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scripts/menus.gd" type="Script" id=1]
-[ext_resource path="res://game.tscn" type="PackedScene" id=2]
-[ext_resource path="res://menus/pause.tscn" type="PackedScene" id=3]
-[ext_resource path="res://menus/host.tscn" type="PackedScene" id=4]
+[ext_resource path="res://menus/menus.gd" type="Script" id=1]
+[ext_resource path="res://game/game.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menus/pause/pause.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menus/host/host.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main.gd" type="Script" id=5]
-[ext_resource path="res://menus/title.tscn" type="PackedScene" id=6]
-[ext_resource path="res://menus/settings.tscn" type="PackedScene" id=7]
-[ext_resource path="res://menus/join.tscn" type="PackedScene" id=8]
+[ext_resource path="res://menus/title/title.tscn" type="PackedScene" id=6]
+[ext_resource path="res://menus/settings/settings.tscn" type="PackedScene" id=7]
+[ext_resource path="res://menus/join/join.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/networking.gd" type="Script" id=9]
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
@@ -35,6 +36,7 @@ visible = false
 visible = false
 
 [node name="Networking" type="Node" parent="."]
+script = ExtResource( 9 )
 
 [connection signal="game_ended" from="Game" to="." method="_on_Game_game_ended"]
 [connection signal="menu_pause" from="Game" to="Menus" method="_on_show_pause_menu"]
