@@ -93,6 +93,7 @@ margin_bottom = 330.0
 
 [node name="HBConAddress" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 margin_left = 240.0
 margin_top = 608.0
 margin_right = 690.0
@@ -134,6 +135,7 @@ text = "copy"
 
 [node name="BtnStart" type="Button" parent="."]
 unique_name_in_owner = true
+visible = false
 margin_left = 849.0
 margin_top = 571.0
 margin_right = 1039.0

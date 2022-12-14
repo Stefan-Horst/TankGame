@@ -20,7 +20,6 @@ func _on_MainMenu_join_game():
 func _on_MainMenu_host_game():
 	main_menu.visible = false
 	host_menu.visible = true
-	#host_menu.hide_address()
 	host_menu.label_address.visible = false
 	host_menu.line_edit_name.grab_focus()
 
@@ -53,6 +52,7 @@ func _on_back_last_menu(caller):
 
 func _on_GameJoin_join_game():
 	host_menu.visible = false
+	lobby_menu.reset()
 	lobby_menu.visible = true #TODO only show after connecting successful
 
 
@@ -61,7 +61,6 @@ func _on_GameHost_host_game(lobby_name):
 	lobby_menu.visible = true
 	lobby_menu.lobby_name = lobby_name
 	lobby_menu.player_is_host = true
-	#lobby_menu.ip_address = Globals.ip_address
 
 
 ## open pause menu when in game

@@ -1,7 +1,5 @@
 extends PanelContainer
 
-#enum Role {OWNER, GUEST}
-
 # %s is placeholder
 const TEXT_PLAYER = "Player %s:"
 const TEXT_NAME = "Name: %s"

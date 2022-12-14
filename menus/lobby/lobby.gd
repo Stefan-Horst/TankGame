@@ -28,6 +28,12 @@ func _ready():
 	player_infos[0].show_connected()
 
 
+func reset(): #TODO not complete yet
+	container_address.visible = false
+	btn_start.visible = false
+	player_is_host = false
+
+
 func set_next_player(player_name, role):
 	if player_iterator < player_infos.size():
 		player_infos[player_iterator].set_name(player_name)
@@ -36,24 +42,11 @@ func set_next_player(player_name, role):
 	player_iterator += 1
 
 
-"""func hide_address():
-	container_address.visible = false
-	label_address.text = ""
-	"""
-
-
 func show_address():
 	ip_address = Globals.ip_address
-	
-	"""if not ip_address == "error":
-		label_address.text = ip_address
-	else:
-		label_address.text = "Error getting IP, try again"
-		"""
-	
-	container_address.visible = true
 	label_address.text = ip_address
-	#btn_copy.visible = true
+	container_address.visible = true
+	btn_start.visible = true #TODO only show after at least one player has joined
 	btn_copy.grab_focus()
 
 
@@ -68,15 +61,6 @@ func set_is_host(is_host):
 	
 	if player_is_host:
 		show_address()
-	
-		"""if ip_address == "error":
-			# no lobby and no copy button needed if ip unknown
-			btn_copy.visible = false
-			return
-		elif not lobby_name:"""
-			# set lobby name to hosts ip if no name entered
-		
-		#lobby_name = ip_address + "'s Lobby"
 		label_title.text = lobby_name
 
 

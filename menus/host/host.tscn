@@ -12,6 +12,7 @@ shortcut = SubResource( 1 )
 bg_color = Color( 0.270588, 0.270588, 0.270588, 1 )
 border_width_left = 1
 border_width_top = 1
+border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.113725, 0.113725, 0.113725, 1 )
 
@@ -116,28 +117,12 @@ focus_next = NodePath("../../../../BtnBack")
 focus_previous = NodePath("../HBConName/LineEditName")
 text = "Host Game!"
 
-[node name="HBConAddress" type="HBoxContainer" parent="."]
+[node name="LabelAddress" type="Label" parent="."]
 unique_name_in_owner = true
 margin_left = 440.0
 margin_top = 506.0
 margin_right = 840.0
-margin_bottom = 502.0
-rect_min_size = Vector2( 0, 22 )
-custom_constants/separation = 0
-
-[node name="LabelAddressInfo" type="Label" parent="HBConAddress"]
-visible = false
-margin_right = 164.0
-margin_bottom = 22.0
-size_flags_vertical = 1
-text = "Your lobby's IP address:   "
-valign = 1
-
-[node name="LabelAddress" type="Label" parent="HBConAddress"]
-unique_name_in_owner = true
-visible = false
-margin_right = 400.0
-margin_bottom = 22.0
+margin_bottom = 528.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 custom_styles/normal = SubResource( 3 )
@@ -145,19 +130,5 @@ text = "Error getting IP, try again"
 align = 1
 valign = 1
 
-[node name="BtnCopy" type="Button" parent="HBConAddress"]
-unique_name_in_owner = true
-visible = false
-margin_left = 358.0
-margin_right = 400.0
-margin_bottom = 22.0
-focus_neighbour_left = NodePath("../../BtnBack")
-focus_neighbour_top = NodePath("../../VBoxContainer/MarginContainer/VBoxContainer/BtnHost")
-focus_neighbour_bottom = NodePath("../../VBoxContainer/MarginContainer/VBoxContainer/HBConName/LineEditName")
-focus_next = NodePath("../../BtnBack")
-focus_previous = NodePath("../../VBoxContainer/MarginContainer/VBoxContainer/BtnHost")
-text = "copy"
-
 [connection signal="pressed" from="BtnBack" to="." method="_on_BtnBack_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/BtnHost" to="." method="_on_BtnHost_pressed"]
-[connection signal="pressed" from="HBConAddress/BtnCopy" to="." method="_on_BtnCopy_pressed"]
