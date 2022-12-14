@@ -1,0 +1,152 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://menus/lobby/lobby.gd" type="Script" id=1]
+[ext_resource path="res://menus/components/lobby_player_info.tscn" type="PackedScene" id=2]
+
+[sub_resource type="InputEventAction" id=3]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.270588, 0.270588, 0.270588, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color( 0.113725, 0.113725, 0.113725, 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.133333, 0.207843, 0.309804, 1 )
+
+[node name="BtnBack" type="Button" parent="."]
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.05
+anchor_bottom = 0.05
+margin_right = 12.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 50 )
+focus_neighbour_right = NodePath("../HBConAddress/BtnCopy")
+focus_neighbour_bottom = NodePath("../HBConAddress/BtnCopy")
+focus_next = NodePath("../HBConAddress/BtnCopy")
+focus_previous = NodePath("../BtnStart")
+shortcut = SubResource( 4 )
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -400.0
+margin_top = 50.0
+margin_right = 400.0
+margin_bottom = -200.0
+custom_constants/separation = 60
+alignment = 1
+
+[node name="LabelTitle" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+margin_right = 800.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+text = "Game Lobby"
+align = 1
+valign = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+margin_top = 140.0
+margin_right = 800.0
+margin_bottom = 470.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 60
+custom_constants/hseparation = 100
+columns = 2
+
+[node name="PlayerInfo1" parent="VBoxContainer/GridContainer" groups=["player"] instance=ExtResource( 2 )]
+margin_right = 350.0
+margin_bottom = 135.0
+
+[node name="PlayerInfo2" parent="VBoxContainer/GridContainer" groups=["player"] instance=ExtResource( 2 )]
+margin_left = 450.0
+margin_right = 800.0
+margin_bottom = 135.0
+
+[node name="PlayerInfo3" parent="VBoxContainer/GridContainer" groups=["player"] instance=ExtResource( 2 )]
+margin_top = 195.0
+margin_right = 350.0
+margin_bottom = 330.0
+
+[node name="PlayerInfo4" parent="VBoxContainer/GridContainer" groups=["player"] instance=ExtResource( 2 )]
+margin_left = 450.0
+margin_top = 195.0
+margin_right = 800.0
+margin_bottom = 330.0
+
+[node name="HBConAddress" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+margin_left = 240.0
+margin_top = 608.0
+margin_right = 690.0
+margin_bottom = 630.0
+rect_min_size = Vector2( 0, 22 )
+custom_constants/separation = 0
+
+[node name="LabelAddressInfo" type="Label" parent="HBConAddress"]
+margin_right = 164.0
+margin_bottom = 22.0
+size_flags_vertical = 1
+text = "Your lobby's IP address:   "
+valign = 1
+
+[node name="LabelAddress" type="Label" parent="HBConAddress"]
+unique_name_in_owner = true
+margin_left = 164.0
+margin_right = 408.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_styles/normal = SubResource( 5 )
+text = "Error getting IP, try again"
+align = 1
+valign = 1
+
+[node name="BtnCopy" type="Button" parent="HBConAddress"]
+unique_name_in_owner = true
+margin_left = 408.0
+margin_right = 450.0
+margin_bottom = 22.0
+focus_neighbour_left = NodePath("../../BtnBack")
+focus_neighbour_top = NodePath("../../BtnBack")
+focus_neighbour_right = NodePath("../../BtnStart")
+focus_neighbour_bottom = NodePath("../../BtnBack")
+focus_next = NodePath("../../BtnStart")
+focus_previous = NodePath("../../BtnBack")
+text = "copy"
+
+[node name="BtnStart" type="Button" parent="."]
+unique_name_in_owner = true
+margin_left = 849.0
+margin_top = 571.0
+margin_right = 1039.0
+margin_bottom = 631.0
+rect_min_size = Vector2( 100, 50 )
+focus_neighbour_left = NodePath("../HBConAddress/BtnCopy")
+focus_neighbour_top = NodePath("../BtnBack")
+focus_neighbour_bottom = NodePath("../BtnBack")
+focus_next = NodePath("../BtnBack")
+focus_previous = NodePath("../HBConAddress/BtnCopy")
+shortcut = SubResource( 4 )
+text = "Start Game!"
+
+[connection signal="pressed" from="BtnBack" to="." method="_on_BtnBack_pressed"]
+[connection signal="pressed" from="HBConAddress/BtnCopy" to="." method="_on_BtnCopy_pressed"]
+[connection signal="pressed" from="BtnStart" to="." method="_on_BtnStart_pressed"]

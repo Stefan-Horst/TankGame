@@ -126,6 +126,7 @@ rect_min_size = Vector2( 0, 22 )
 custom_constants/separation = 0
 
 [node name="LabelAddressInfo" type="Label" parent="HBConAddress"]
+visible = false
 margin_right = 164.0
 margin_bottom = 22.0
 size_flags_vertical = 1
@@ -134,8 +135,8 @@ valign = 1
 
 [node name="LabelAddress" type="Label" parent="HBConAddress"]
 unique_name_in_owner = true
-margin_left = 164.0
-margin_right = 358.0
+visible = false
+margin_right = 400.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -146,6 +147,7 @@ valign = 1
 
 [node name="BtnCopy" type="Button" parent="HBConAddress"]
 unique_name_in_owner = true
+visible = false
 margin_left = 358.0
 margin_right = 400.0
 margin_bottom = 22.0

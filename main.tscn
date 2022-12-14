@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://menus/menus.gd" type="Script" id=1]
 [ext_resource path="res://game/game.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://menus/settings/settings.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/join/join.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/networking.gd" type="Script" id=9]
+[ext_resource path="res://menus/lobby/lobby.tscn" type="PackedScene" id=10]
 
 [node name="Main" type="Node"]
 script = ExtResource( 5 )
@@ -27,6 +28,9 @@ script = ExtResource( 1 )
 visible = false
 
 [node name="GameHost" parent="Menus" instance=ExtResource( 4 )]
+visible = false
+
+[node name="GameLobby" parent="Menus" instance=ExtResource( 10 )]
 visible = false
 
 [node name="Settings" parent="Menus" instance=ExtResource( 7 )]
@@ -49,6 +53,7 @@ script = ExtResource( 9 )
 [connection signal="join_game" from="Menus/GameJoin" to="Menus" method="_on_GameJoin_join_game"]
 [connection signal="back_main_menu" from="Menus/GameHost" to="Menus" method="_on_back_main_menu"]
 [connection signal="host_game" from="Menus/GameHost" to="Menus" method="_on_GameHost_host_game"]
+[connection signal="back_last_menu" from="Menus/GameLobby" to="Menus" method="_on_back_last_menu"]
 [connection signal="back_main_menu" from="Menus/Settings" to="Menus" method="_on_back_main_menu"]
 [connection signal="menu_pause" from="Menus/IngamePause" to="Menus" method="_on_show_pause_menu"]
 [connection signal="quit_game" from="Menus/IngamePause" to="." method="_on_Pause_quit_game"]
