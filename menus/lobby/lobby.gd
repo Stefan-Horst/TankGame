@@ -1,4 +1,4 @@
-extends Control
+extends Menu
 
 signal host_start_game()
 signal back_last_menu(caller)
@@ -7,7 +7,7 @@ var player_infos = []
 var player_iterator = 0
 var ip_address
 # is set from host menu via menus.gd
-var lobby_name
+#var lobby_name
 var player_is_host = false setget set_is_host
 
 onready var label_title = $"%LabelTitle"
@@ -25,13 +25,20 @@ func _ready():
 		player_infos[i].set_player(i + 1)
 	
 	# this game instance is definitely in lobby, therefore show it
-	player_infos[0].show_connected()
+	player_infos.front().show_connected()
 
 
-func reset(): #TODO not complete yet
+func initialize(): #TODO not complete yet
+	.initialize()
 	container_address.visible = false
 	btn_start.visible = false
-	player_is_host = false
+	label_title.text = Globals.current_lobby_name
+	
+	if Globals.last_menu == Globals.MENU.GAME_HOST:
+		#lobby_name = Globals.current_lobby_name
+		set_is_host(true)
+	else:
+		player_is_host = false
 
 
 func set_next_player(player_name, role):
@@ -61,7 +68,7 @@ func set_is_host(is_host):
 	
 	if player_is_host:
 		show_address()
-		label_title.text = lobby_name
+		#label_title.text = lobby_name
 
 
 func _on_BtnCopy_pressed():

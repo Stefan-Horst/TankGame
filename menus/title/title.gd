@@ -1,20 +1,22 @@
-extends Control
+extends Menu
 
-signal join_game()
-signal host_game()
 signal start_game()
-signal settings_menu()
 signal quit()
 
 onready var btn_join_game = $"%BtnJoinGame"
 
 
+func initialize():
+	.initialize()
+	btn_join_game.grab_focus()
+
+
 func _on_BtnJoinGame_pressed():
-	emit_signal("join_game")
+	change_to_menu(Globals.MENU.GAME_JOIN)
 
 
 func _on_BtnHostGame_pressed():
-	emit_signal("host_game")
+	change_to_menu(Globals.MENU.GAME_HOST)
 
 
 func _on_BtnStartSandbox_pressed():
@@ -22,9 +24,8 @@ func _on_BtnStartSandbox_pressed():
 
 
 func _on_BtnSettings_pressed():
-	emit_signal("settings_menu")
+	change_to_menu(Globals.MENU.SETTINGS)
 
 
 func _on_BtnQuit_pressed():
 	emit_signal("quit")
-

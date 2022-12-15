@@ -1,5 +1,16 @@
 extends Node
 
+enum MENU {
+	MAIN,
+	SETTINGS,
+	GAME_JOIN,
+	GAME_HOST,
+	GAME_LOBBY,
+	INGAME_PAUSE,
+}
+
+var last_menu
+var current_lobby_name = ""
 # public ip address
 var ip_address = ""
 

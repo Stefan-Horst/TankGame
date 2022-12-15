@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Actor",
 "language": "GDScript",
 "path": "res://entities/actor.gd"
+}, {
+"base": "Control",
+"class": "Menu",
+"language": "GDScript",
+"path": "res://menus/menu.gd"
 } ]
 _global_script_class_icons={
-"Actor": ""
+"Actor": "",
+"Menu": ""
 }
 
 [application]

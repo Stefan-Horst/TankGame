@@ -1,6 +1,5 @@
-extends Control
+extends Menu
 
-signal join_game()
 signal back_main_menu(caller)
 
 onready var line_edit_join = $"%LineEditJoin"
@@ -14,9 +13,10 @@ func _process(_delta):
 		btn_join.disabled = false
 
 
+func initialize():
+	.initialize()
+	line_edit_join.grab_focus()
+
+
 func _on_BtnJoin_pressed():
-	emit_signal("join_game")
-
-
-func _on_BtnBack_pressed():
-	emit_signal("back_main_menu", self)
+	change_to_menu(Globals.MENU.GAME_LOBBY)
