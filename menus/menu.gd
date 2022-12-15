@@ -1,6 +1,9 @@
+### abstract class
+
 extends Control
 
 class_name Menu
+
 
 signal change_to_menu(menu)
 signal back_to_last_menu()

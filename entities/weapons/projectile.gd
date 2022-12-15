@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+
 signal entity_hit(projectile_emitter, hit_entity)
 
 var max_amount_bounces = 1 # value of 0 disables wallbounces

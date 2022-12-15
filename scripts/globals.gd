@@ -1,4 +1,7 @@
+### autoload
+
 extends Node
+
 
 enum MENU {
 	MAIN,

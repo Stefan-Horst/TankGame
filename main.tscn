@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://menus/menus.gd" type="Script" id=1]
+[ext_resource path="res://menus/menu_manager.gd" type="Script" id=1]
 [ext_resource path="res://game/game.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menus/pause/pause.tscn" type="PackedScene" id=3]
 [ext_resource path="res://menus/host/host.tscn" type="PackedScene" id=4]

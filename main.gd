@@ -1,5 +1,6 @@
 extends Node
 
+
 onready var game = $Game
 onready var menus = $Menus
 onready var menu_main = menus.get_node("MainMenu")

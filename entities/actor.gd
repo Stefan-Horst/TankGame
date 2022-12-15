@@ -1,6 +1,9 @@
+### abstract class
+
 extends KinematicBody2D
 
 class_name Actor
+
 
 # can be moved to npc if it will be the only class inheriting actor (excluding player)
 signal shoot_projectile(projectile, caller, location, direction)

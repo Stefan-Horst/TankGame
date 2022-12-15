@@ -1,13 +1,12 @@
 extends Menu
 
+
 signal host_start_game()
 
 var player_infos = []
 var player_iterator = 0
 var ip_address
-# is set from host menu via menus.gd
-#var lobby_name
-var player_is_host = false setget set_is_host
+var player_is_host
 
 onready var label_title = $"%LabelTitle"
 onready var container_address = $"%HBConAddress"
@@ -34,8 +33,8 @@ func initialize(): #TODO not complete yet
 	label_title.text = Globals.current_lobby_name
 	
 	if Globals.last_menu == Globals.MENU.GAME_HOST:
-		#lobby_name = Globals.current_lobby_name
-		set_is_host(true)
+		player_is_host = true
+		show_address()
 	else:
 		player_is_host = false
 
@@ -58,16 +57,6 @@ func show_address():
 
 func show_start_button(): #TODO
 	btn_start.visible = true
-
-
-## setter of player_is_host
-## shows/hides players ip address depending on whether he is the host or not
-func set_is_host(is_host):
-	player_is_host = is_host
-	
-	if player_is_host:
-		show_address()
-		#label_title.text = lobby_name
 
 
 func _on_BtnCopy_pressed():

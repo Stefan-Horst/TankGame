@@ -1,5 +1,6 @@
 extends PanelContainer
 
+
 # %s is placeholder
 const TEXT_PLAYER = "Player %s:"
 const TEXT_NAME = "Name: %s"

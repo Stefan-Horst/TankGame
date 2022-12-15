@@ -1,7 +1,10 @@
+### component
+
 extends Button
 
+
 func _ready():
-	self.connect("pressed", self, "_on_back_button_pressed")
+	self.connect("pressed", self, "_on_back_button_pressed") #warning-ignore:RETURN_VALUE_DISCARDED
 
 
 func _on_back_button_pressed():
