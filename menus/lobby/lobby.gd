@@ -1,7 +1,6 @@
 extends Menu
 
 signal host_start_game()
-signal back_last_menu(caller)
 
 var player_infos = []
 var player_iterator = 0
@@ -78,7 +77,3 @@ func _on_BtnCopy_pressed():
 
 func _on_BtnStart_pressed():
 	emit_signal("host_start_game")
-
-
-func _on_BtnBack_pressed():
-	emit_signal("back_last_menu", self)

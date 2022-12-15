@@ -1,6 +1,5 @@
 extends Menu
 
-signal back_main_menu(caller)
 
 onready var line_edit_join = $"%LineEditJoin"
 onready var btn_join = $"%BtnJoin"

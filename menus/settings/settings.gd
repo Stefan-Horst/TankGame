@@ -1,7 +1,7 @@
 extends Menu
 
+
 signal change_steering_mode(mode)
-signal back_main_menu(caller)
 
 # normal = false; inverted = true
 var steering_mode = false

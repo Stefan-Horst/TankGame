@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://menus/lobby/lobby.gd" type="Script" id=1]
 [ext_resource path="res://menus/components/lobby_player_info.tscn" type="PackedScene" id=2]
+[ext_resource path="res://menus/components/button_back.gd" type="Script" id=3]
 
 [sub_resource type="InputEventAction" id=3]
 action = "ui_cancel"
@@ -40,6 +41,7 @@ focus_next = NodePath("../HBConAddress/BtnCopy")
 focus_previous = NodePath("../BtnStart")
 shortcut = SubResource( 4 )
 text = "Back"
+script = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -149,6 +151,5 @@ focus_previous = NodePath("../HBConAddress/BtnCopy")
 shortcut = SubResource( 4 )
 text = "Start Game!"
 
-[connection signal="pressed" from="BtnBack" to="." method="_on_BtnBack_pressed"]
 [connection signal="pressed" from="HBConAddress/BtnCopy" to="." method="_on_BtnCopy_pressed"]
 [connection signal="pressed" from="BtnStart" to="." method="_on_BtnStart_pressed"]
