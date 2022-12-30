@@ -14,14 +14,32 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://entities/actor.gd"
 }, {
+"base": "Networking",
+"class": "Client",
+"language": "GDScript",
+"path": "res://scripts/multiplayer/client.gd"
+}, {
 "base": "Control",
 "class": "Menu",
 "language": "GDScript",
 "path": "res://menus/menu.gd"
+}, {
+"base": "Node",
+"class": "Networking",
+"language": "GDScript",
+"path": "res://scripts/multiplayer/networking.gd"
+}, {
+"base": "Networking",
+"class": "Server",
+"language": "GDScript",
+"path": "res://scripts/multiplayer/server.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
-"Menu": ""
+"Client": "",
+"Menu": "",
+"Networking": "",
+"Server": ""
 }
 
 [application]
