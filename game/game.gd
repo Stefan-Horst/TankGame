@@ -4,7 +4,7 @@ extends Node2D
 signal menu_pause()
 signal game_ended()
 
-const MAX_PLAYERS = 4
+const MAX_PLAYERS = Globals.MAX_PLAYERS
 
 var enemies = []
 var enemies_alive = []

@@ -12,10 +12,13 @@ enum MENU {
 	INGAME_PAUSE,
 }
 
+const MAX_PLAYERS = 4
+
 var last_menu
 var current_lobby_name = ""
 # public ip address
 var ip_address = ""
+var is_host = false
 
 
 func _ready():

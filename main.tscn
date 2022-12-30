@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://menus/menu_manager.gd" type="Script" id=1]
 [ext_resource path="res://game/game.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://menus/title/title.tscn" type="PackedScene" id=6]
 [ext_resource path="res://menus/settings/settings.tscn" type="PackedScene" id=7]
 [ext_resource path="res://menus/join/join.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scripts/networking.gd" type="Script" id=9]
 [ext_resource path="res://menus/lobby/lobby.tscn" type="PackedScene" id=10]
 
 [node name="Main" type="Node"]
@@ -42,9 +41,6 @@ visible = false
 [node name="IngamePause" parent="Menus" instance=ExtResource( 3 )]
 visible = false
 
-[node name="Networking" type="Node" parent="."]
-script = ExtResource( 9 )
-
 [connection signal="game_ended" from="Game" to="." method="_on_Game_game_ended"]
 [connection signal="menu_pause" from="Game" to="Menus" method="_on_show_pause_menu"]
 [connection signal="change_to_menu" from="Menus/MainMenu" to="Menus" method="change_to_menu"]
@@ -52,9 +48,13 @@ script = ExtResource( 9 )
 [connection signal="start_game" from="Menus/MainMenu" to="." method="_on_MainMenu_start_game"]
 [connection signal="back_to_last_menu" from="Menus/GameJoin" to="Menus" method="back_to_last_menu"]
 [connection signal="change_to_menu" from="Menus/GameJoin" to="Menus" method="change_to_menu"]
+[connection signal="join_game" from="Menus/GameJoin" to="." method="_on_GameJoin_join_game"]
 [connection signal="back_to_last_menu" from="Menus/GameHost" to="Menus" method="back_to_last_menu"]
 [connection signal="change_to_menu" from="Menus/GameHost" to="Menus" method="change_to_menu"]
+[connection signal="host_game" from="Menus/GameHost" to="." method="_on_GameHost_host_game"]
 [connection signal="back_to_last_menu" from="Menus/GameLobby" to="Menus" method="back_to_last_menu"]
+[connection signal="host_start_game" from="Menus/GameLobby" to="." method="_on_GameLobby_host_start_game"]
+[connection signal="lobby_exited" from="Menus/GameLobby" to="." method="_on_GameLobby_lobby_exited"]
 [connection signal="back_to_last_menu" from="Menus/Settings" to="Menus" method="back_to_last_menu"]
 [connection signal="menu_pause" from="Menus/IngamePause" to="Menus" method="_on_show_pause_menu"]
 [connection signal="quit_game" from="Menus/IngamePause" to="." method="_on_Pause_quit_game"]

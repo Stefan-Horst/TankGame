@@ -1,6 +1,8 @@
 extends Menu
 
 
+signal join_game(address)
+
 onready var line_edit_join = $"%LineEditJoin"
 onready var btn_join = $"%BtnJoin"
 
@@ -18,4 +20,5 @@ func initialize():
 
 
 func _on_BtnJoin_pressed():
+	emit_signal("join_game", line_edit_join.text)
 	change_to_menu(Globals.MENU.GAME_LOBBY)
