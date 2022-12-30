@@ -8,6 +8,9 @@ onready var menu_pause = menus.get_node("IngamePause")
 
 
 func _ready():
+	get_tree().paused = true
+	#game.pause_mode = Node.PAUSE_MODE_STOP
+	#game.get_node("Player").pause_mode = Node.PAUSE_MODE_STOP
 	menu_main.btn_join_game.grab_focus()
 
 

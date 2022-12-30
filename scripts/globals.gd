@@ -19,6 +19,8 @@ var ip_address = ""
 
 
 func _ready():
+	# set pause mode for children to inherit it and still process if tree is paused
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	init_ip_address()
 
 
