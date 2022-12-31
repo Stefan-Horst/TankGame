@@ -21,7 +21,6 @@ func set_player(number):
 
 
 func set_name(name_player):
-	#if not name_player.begins_with("Name: "):
 	label_name.text = TEXT_NAME % name_player
 
 

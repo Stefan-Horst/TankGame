@@ -5,9 +5,7 @@ signal host_start_game()
 signal lobby_exited()
 
 var player_infos = []
-#var player_iterator
 var ip_address
-#var player_is_host
 var sufficient_players = false
 
 onready var label_title = $"%LabelTitle"
@@ -23,29 +21,20 @@ func _ready():
 	## give players numbers
 	for i in player_infos.size():
 		player_infos[i].set_player(i + 1)
-	
-	# this game instance is definitely in lobby, therefore show it
-	#player_infos.front().show_connected()
 
 
-func initialize(): #TODO not complete yet
+func initialize():
 	.initialize()
 	container_address.visible = false
 	btn_start.visible = false
 	label_title.text = Globals.current_lobby_name
-	#player_iterator = 1
 	
-	if Globals.is_host:#Globals.last_menu == Globals.MENU.GAME_HOST:
-		#player_is_host = true
-		#show_address()
-		
+	if Globals.is_host:
 		## show ip address for host to copy
 		ip_address = Globals.ip_address
 		label_address.text = ip_address
 		container_address.visible = true
 		btn_copy.grab_focus()
-	#else:
-		#player_is_host = false
 
 
 func reset():
@@ -56,6 +45,7 @@ func reset():
 	emit_signal("lobby_exited")
 
 
+## add new player to lobby, place it in next free slot
 func set_next_player(id, player_name, role):
 	var player_iterator = 0
 	while player_iterator < player_infos.size():
@@ -67,7 +57,7 @@ func set_next_player(id, player_name, role):
 			break
 		player_iterator += 1
 	
-	if sufficient_players:
+	if Globals.is_host and sufficient_players:
 		btn_start.visible = true
 
 
@@ -103,24 +93,11 @@ func remove_player(id):
 			player_infos[i].show_connected()
 			
 			player_infos[j].hide()
-	
-	#player_iterator -= 1
 
 
 func _reset_player_infos():
 	for player_info in player_infos:
 		player_info.hide()
-
-
-#func show_address():
-#	ip_address = Globals.ip_address
-#	label_address.text = ip_address
-#	container_address.visible = true
-#	btn_copy.grab_focus()
-
-
-#func show_start_button(): #TODO
-	#btn_start.visible = true
 
 
 func _on_BtnCopy_pressed():

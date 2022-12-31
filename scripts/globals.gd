@@ -47,6 +47,6 @@ func on_get_ip_address(_result, response_code, _headers, body):
 		return
 	
 	ip_address = body.get_string_from_utf8()
-	print("public ip address is: ", ip_address)
+	print("Public ip address is: ", ip_address)
 	
 	ip_address = "127.0.0.1" #TODO remove later
