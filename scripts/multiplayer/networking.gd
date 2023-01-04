@@ -14,7 +14,6 @@ const STANDARD_PORT = 43804
 
 var port = STANDARD_PORT
 var players = []
-var player_id = -1
 
 
 func _ready():
@@ -23,18 +22,11 @@ func _ready():
 
 
 func _player_connected(id):
-	if player_id == -1:
-		player_id = get_tree().get_network_unique_id()
-	
 	rpc_id(id, "register_player")
 
 
 func _player_disconnected(id):
 	players.erase(id)
-	
-	if id == player_id:
-		player_id = -1
-	
 	print("Player disconnected: %s" % id)
 	print("All players: " + String(players))
 	emit_signal("player_disconnected", id)

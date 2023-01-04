@@ -37,6 +37,7 @@ func _on_GameHost_host_game():
 	server.set_name("networker")
 	server.call_deferred("start_server")
 	menu_lobby.set_next_player(1, "1", "Host")
+	menu_lobby.btn_back.text = "Quit"
 
 
 func _on_GameJoin_join_game(address):
@@ -44,6 +45,7 @@ func _on_GameJoin_join_game(address):
 	add_child(client)
 	client.set_name("networker")
 	client.call_deferred("start_connection", address)
+	menu_lobby.btn_back.text = "Leave"
 
 
 ## other player connected to this host

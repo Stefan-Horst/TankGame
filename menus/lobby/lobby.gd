@@ -13,6 +13,7 @@ onready var container_address = $"%HBConAddress"
 onready var label_address = $"%LabelAddress"
 onready var btn_copy = $"%BtnCopy"
 onready var btn_start = $"%BtnStart"
+onready var btn_back = $"%BtnBack"
 
 
 func _ready():
@@ -42,6 +43,7 @@ func reset():
 	_reset_player_infos()
 	label_title.text = ""
 	sufficient_players = false
+	Globals.current_lobby_name = ""
 	emit_signal("lobby_exited")
 
 
@@ -49,11 +51,14 @@ func reset():
 func set_next_player(id, player_name, role):
 	var player_iterator = 0
 	while player_iterator < player_infos.size():
-		if String(player_infos[player_iterator].id) == "-1":
-			player_infos[player_iterator].id = id
-			player_infos[player_iterator].set_name(player_name)
-			player_infos[player_iterator].set_role(role)
-			player_infos[player_iterator].show_connected()
+		var player = player_infos[player_iterator]
+		if String(player.id) == "-1":
+			player.id = id
+			player.set_name(player_name)
+			player.set_role(role)
+			player.show_connected()
+			if id == Globals.player_id or (Globals.is_host and id == 1):
+				player.set_own_player()
 			break
 		player_iterator += 1
 	

@@ -24,6 +24,7 @@ func start_connection(server_ip):
 		print("Error connecting client with status: %s" % status)
 	
 	Globals.get_tree().network_peer = peer
+	Globals.player_id = get_tree().get_network_unique_id()
 
 
 func stop_connection():
@@ -31,8 +32,10 @@ func stop_connection():
 	yield(get_tree(), "idle_frame")
 	Globals.get_tree().network_peer = null
 	
-	players = []
 	print("Connection to server stopped")
+	
+	Globals.player_id = -1
+	players = []
 
 
 # connection to server successful

@@ -19,6 +19,7 @@ var current_lobby_name = ""
 # public ip address
 var ip_address = ""
 var is_host = false
+var player_id = -1
 
 
 func _ready():

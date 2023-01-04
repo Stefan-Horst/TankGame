@@ -40,6 +40,10 @@ func show_connected():
 	modulate = Color("ffffff") # reset modulation
 
 
+func set_own_player():
+	modulate = Color("00d8ff")
+
+
 func hide():
 	id = -1
 	set_name("")

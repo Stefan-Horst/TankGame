@@ -20,16 +20,20 @@ func start_server():
 		print("Error starting server with status: %s" % status)
 	
 	Globals.get_tree().network_peer = peer
+	Globals.player_id = get_tree().get_network_unique_id()
 
 
 func stop_server():
 	for player in players:
 		disconnect_player(player)
-	players = []
 	
 	yield(get_tree(), "idle_frame")
 	Globals.get_tree().network_peer = null
+	
 	print("Server stopped")
+	
+	Globals.player_id = -1
+	players = []
 
 
 func _synchronize_lobby(id):

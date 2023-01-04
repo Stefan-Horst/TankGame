@@ -28,6 +28,7 @@ anchor_bottom = 1.0
 color = Color( 0.133333, 0.207843, 0.309804, 1 )
 
 [node name="BtnBack" type="Button" parent="."]
+unique_name_in_owner = true
 anchor_left = 0.05
 anchor_top = 0.05
 anchor_right = 0.05
