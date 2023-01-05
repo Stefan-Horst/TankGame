@@ -94,6 +94,7 @@ func _set_remote_players(players):
 
 
 func _on_GameLobby_lobby_exited():
+	Globals.current_player_amount = 1
 	if Globals.is_host:
 		server.stop_server()
 		call_deferred("remove_child", server)
@@ -108,7 +109,8 @@ func _on_GameLobby_host_start_game():
 
 func _on_Pause_quit_game():
 	get_tree().paused = true
-	game.end_game()
+	#game.end_game() necessary here?
+	Globals.current_player_amount = 1
 	menu_pause.visible = false
 	game.visible = false
 	menu_main.visible = true
@@ -120,6 +122,7 @@ func _on_Pause_quit_game():
 
 func _on_Game_game_ended():
 	get_tree().paused = true
+	Globals.current_player_amount = 1
 	game.visible = false
 	menu_main.visible = true
 	#TODO show post game leaderboard etc

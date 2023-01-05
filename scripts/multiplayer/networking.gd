@@ -27,6 +27,7 @@ func _player_connected(id):
 
 func _player_disconnected(id):
 	players.erase(id)
+	Globals.current_player_amount -= 1
 	print("Player disconnected: %s" % id)
 	print("All players: " + String(players))
 	emit_signal("player_disconnected", id)
@@ -36,6 +37,7 @@ func _player_disconnected(id):
 remote func register_player():
 	var id = get_tree().get_rpc_sender_id()
 	players.append(id)
+	Globals.current_player_amount += 1
 	print("New player connected: %s" % id)
 	print("All players: " + String(players))
 	emit_signal("player_connected", id)

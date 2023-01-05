@@ -13,9 +13,11 @@ enum MENU {
 }
 
 const MAX_PLAYERS = 4
+const SUFFICIENT_PLAYERS = 2
 
 var last_menu
 var current_lobby_name = ""
+var current_player_amount = 1
 # public ip address
 var ip_address = ""
 var is_host = false

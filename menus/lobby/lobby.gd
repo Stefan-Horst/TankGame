@@ -6,7 +6,6 @@ signal lobby_exited()
 
 var player_infos = []
 var ip_address
-var sufficient_players = false
 
 onready var label_title = $"%LabelTitle"
 onready var container_address = $"%HBConAddress"
@@ -42,7 +41,6 @@ func reset():
 	.reset()
 	_reset_player_infos()
 	label_title.text = ""
-	sufficient_players = false
 	Globals.current_lobby_name = ""
 	emit_signal("lobby_exited")
 
@@ -62,7 +60,7 @@ func set_next_player(id, player_name, role):
 			break
 		player_iterator += 1
 	
-	if Globals.is_host and sufficient_players:
+	if Globals.is_host and Globals.current_player_amount == Globals.SUFFICIENT_PLAYERS:
 		btn_start.visible = true
 
 
@@ -98,6 +96,9 @@ func remove_player(id):
 			player_infos[i].show_connected()
 			
 			player_infos[j].hide()
+	
+	if Globals.current_player_amount < Globals.SUFFICIENT_PLAYERS:
+		btn_start.visible = false
 
 
 func _reset_player_infos():
