@@ -28,4 +28,3 @@ func _on_BtnHost_pressed():
 	Globals.current_lobby_name = lobby_name
 	
 	emit_signal("host_game")
-	change_to_menu(Globals.MENU.GAME_LOBBY)

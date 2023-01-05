@@ -21,4 +21,3 @@ func initialize():
 
 func _on_BtnJoin_pressed():
 	emit_signal("join_game", line_edit_join.text)
-	change_to_menu(Globals.MENU.GAME_LOBBY)

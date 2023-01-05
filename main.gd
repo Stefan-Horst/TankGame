@@ -29,6 +29,7 @@ func _on_MainMenu_start_game():
 	menu_main.visible = false
 	game.visible = true
 	game.init_game(4) #TODO dynamic value
+	get_tree().paused = false
 
 
 func _on_GameHost_host_game():
@@ -37,6 +38,7 @@ func _on_GameHost_host_game():
 	server.set_name("networker")
 	server.call_deferred("start_server")
 	menu_lobby.set_next_player(1, "1", "Host")
+	menus.change_to_menu(Globals.MENU.GAME_LOBBY)
 	menu_lobby.btn_back.text = "Quit"
 
 
@@ -45,6 +47,7 @@ func _on_GameJoin_join_game(address):
 	add_child(client)
 	client.set_name("networker")
 	client.call_deferred("start_connection", address)
+	menus.change_to_menu(Globals.MENU.GAME_LOBBY)
 	menu_lobby.btn_back.text = "Leave"
 
 
@@ -104,6 +107,7 @@ func _on_GameLobby_host_start_game():
 
 
 func _on_Pause_quit_game():
+	get_tree().paused = true
 	game.end_game()
 	menu_pause.visible = false
 	game.visible = false
@@ -115,6 +119,7 @@ func _on_Pause_quit_game():
 
 
 func _on_Game_game_ended():
+	get_tree().paused = true
 	game.visible = false
 	menu_main.visible = true
 	#TODO show post game leaderboard etc
