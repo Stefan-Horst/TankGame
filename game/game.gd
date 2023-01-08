@@ -27,14 +27,15 @@ func _process(_delta):
 		emit_signal("menu_pause")
 
 
-func init_game(amount_players): #TODO add map param
+## called by both host and clients
+func init_game(players):
 	## reset values (from last game)
 	spawn_positions = []
 	enemies_alive = []
 	actors = []
 	
 	## init amount actual enemies equals amount real other players
-	for i in amount_players - 1:
+	for i in Globals.current_player_amount - 1:
 		enemies_alive.append(enemies[i])
 	
 	actors.append(player)
@@ -42,11 +43,19 @@ func init_game(amount_players): #TODO add map param
 	
 	player.enemies = enemies_alive
 	
+	## give player his own id and then enemies the other players' ids
+	actors[0].id = Globals.player_id
+	for i in Globals.current_player_amount - 1:
+		actors[i + 1].id = players[i]
+	
 	## init list spawn_positions
 	var sp = map.get_node("SpawnPositions")
 	for i in sp.get_child_count():
 		spawn_positions.append(sp.get_child(i))
-	
+
+
+## (as host) start new game from scratch
+func start_game(): #TODO add map param
 	## assign every tank a random spawn_position
 	var spawn_order = []
 	for i in range(0, actors.size()):
@@ -60,11 +69,31 @@ func init_game(amount_players): #TODO add map param
 		actors[i].visible = true
 
 
+## (as client) start game with existing players etc.
+func load_game(player_infos):
+	var enemy_iterator = 0
+	for p in player_infos:
+		if p == Globals.player_id:
+			player.position = player_infos.get(p)
+		else:
+			enemies[enemy_iterator].position = player_infos.get(p)
+			enemy_iterator += 1
+
+
 func end_game():
-	for i in actors.size():
-		actors[i].remove_from_game() # maybe only call for last survivor
+	for actor in actors:
+		actor.remove_from_game() # maybe only call for last survivor
 	
 	emit_signal("game_ended")
+
+
+func get_player_infos():
+	var player_infos = {}
+	
+	for actor in actors:
+		player_infos[actor.id] = actor.position
+	
+	return player_infos
 
 
 func _on_shoot_projectile(Projectile, caller, location, direction):

@@ -8,6 +8,8 @@ class_name Actor
 # can be moved to npc if it will be the only class inheriting actor (excluding player)
 signal shoot_projectile(projectile, caller, location, direction)
 
+var id = -1
+var player_name = ""
 var speed = 200
 var angular_speed = 1
 var hp = 100

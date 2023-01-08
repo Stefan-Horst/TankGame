@@ -23,6 +23,7 @@ func _ready():
 	client.connect("player_disconnected", self, "_server_disconnected")
 	client.connect("set_remote_players", self, "_set_remote_players")
 	client.connect("set_lobby_name", self, "_set_lobby_name")
+	client.connect("prepare_game", self, "_prepare_game")
 
 
 func _on_MainMenu_start_game():
@@ -93,6 +94,13 @@ func _set_remote_players(players):
 			menu_lobby.set_next_player(player, player, "Guest")
 
 
+## only on clients
+func _prepare_game(player_infos):
+	game.init_game(client.players)
+	game.load_game(player_infos)
+	print("Game loaded with players: " + String(game.get_player_infos()))
+
+
 func _on_GameLobby_lobby_exited():
 	Globals.current_player_amount = 1
 	if Globals.is_host:
@@ -104,7 +112,9 @@ func _on_GameLobby_lobby_exited():
 
 
 func _on_GameLobby_host_start_game():
-	pass #TODO start game
+	game.init_game(server.players)
+	game.start_game()
+	server.start_game(game.get_player_infos())
 
 
 func _on_Pause_quit_game():

@@ -6,6 +6,7 @@ class_name Client
 signal disconnected_by_server()
 signal set_lobby_name(lobby_name)
 signal set_remote_players(players)
+signal prepare_game()
 
 
 func _ready():
@@ -58,3 +59,8 @@ remote func set_lobby_name(lobby_name):
 
 remote func set_remote_players(players):
 	emit_signal("set_remote_players", players)
+
+
+remote func prepare_game(player_infos):
+	assert(player_infos.size() == Globals.current_player_amount)
+	emit_signal("prepare_game", player_infos)

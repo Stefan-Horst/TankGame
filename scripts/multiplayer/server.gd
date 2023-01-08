@@ -36,6 +36,11 @@ func stop_server():
 	players = []
 
 
+func start_game(players):
+	rpc("prepare_game", players)
+	print("Make clients prepare game with player positions: " + String(players))
+
+
 func _synchronize_lobby(id):
 	if id == 1:
 		return
