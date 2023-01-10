@@ -9,7 +9,7 @@ onready var pause_menu = game.get_node("Overlay/IngamePause")
 
 var server = Server.new()
 var client = Client.new()
-var game_active = false
+#var game_active = false
 var pause_menu_active = false
 
 
@@ -74,7 +74,7 @@ func _server_connected(id):
 
 ## host closed connection / kicked this player
 func _disconnected_by_server():
-	menus.back_to_last_menu()
+	_on_Game_game_ended()
 
 
 ## another player disconnected from host

@@ -19,6 +19,9 @@ onready var cooldown_timer = player.get_node("TimerGunCooldown")
 
 func _ready():
 	enemies = get_tree().get_nodes_in_group("enemy")
+	
+	for enemy in enemies:
+		enemy.remove_from_game()
 
 
 func _process(_delta):
@@ -58,7 +61,7 @@ func init_game(players):
 func start_game(): #TODO add map param
 	## assign every tank a random spawn_position
 	var spawn_order = []
-	for i in range(0, actors.size()):
+	for i in range(0, spawn_positions.size()):
 		spawn_order.append(i)
 	
 	randomize()
@@ -75,16 +78,19 @@ func load_game(player_infos):
 	for p in player_infos:
 		if p == Globals.player_id:
 			player.position = player_infos.get(p)
+			player.visible = true
 		else:
 			enemies[enemy_iterator].position = player_infos.get(p)
+			enemies[enemy_iterator].visible = true
 			enemy_iterator += 1
 
 
 func end_game():
 	for actor in actors:
-		actor.remove_from_game() # maybe only call for last survivor
+		actor.remove_from_game()
 	
-	emit_signal("game_ended")
+	## remove all still existing projectiles when game ends
+	get_tree().call_group("game_generated", "queue_free")
 
 
 func get_player_infos():
@@ -107,6 +113,7 @@ func _on_shoot_projectile(Projectile, caller, location, direction):
 	## create projectile
 	var p = Projectile.instance()
 	add_child(p)
+	p.add_to_group("game_generated")
 	
 	p.emitter = caller.name
 	p.position = location
@@ -129,7 +136,7 @@ func _on_enemy_destroyed(caller):
 	player.enemies = enemies_alive
 	
 	if enemies_alive.size() == 0:
-		end_game()
+		emit_signal("game_ended")
 
 
 func _on_TimerCooldown_timeout():
