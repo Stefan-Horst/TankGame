@@ -3,7 +3,10 @@ extends Networking
 class_name Server
 
 
+signal clients_ready()
+
 var max_players = Globals.MAX_PLAYERS
+var ready_players = []
 
 
 func _ready():
@@ -37,8 +40,19 @@ func stop_server():
 
 
 func start_game(players):
+	## clients need to be ready before game can actually start
 	rpc("prepare_game", players)
 	print("Make clients prepare game with player positions: " + String(players))
+
+
+remote func set_client_ready(): #TODO change from remote to master?
+	ready_players.append(get_tree().get_rpc_sender_id())
+	
+	## start game if list of players contains same ids as list of ready players
+	if ready_players.sort() == players.duplicate().sort():
+		rpc("start_game")
+		print("Game starting")
+		emit_signal("clients_ready")
 
 
 func _synchronize_lobby(id):

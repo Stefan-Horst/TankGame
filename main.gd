@@ -19,12 +19,15 @@ func _ready():
 	
 	server.connect("player_connected", self, "_player_connected")
 	server.connect("player_disconnected", self, "_player_disconnected")
+	server.connect("clients_ready", self, "_start_game")
+	
 	client.connect("player_connected", self, "_server_connected")
 	client.connect("disconnected_by_server", self, "_disconnected_by_server")
 	client.connect("player_disconnected", self, "_server_disconnected")
 	client.connect("set_remote_players", self, "_set_remote_players")
 	client.connect("set_lobby_name", self, "_set_lobby_name")
 	client.connect("prepare_game", self, "_prepare_game")
+	client.connect("start_game", self, "_start_game")
 
 
 func _on_MainMenu_start_game():
@@ -100,6 +103,16 @@ func _prepare_game(player_infos):
 	game.init_game(client.players)
 	game.load_game(player_infos)
 	print("Game loaded with players: " + String(game.get_player_infos()))
+	
+	client.notify_client_ready()
+
+
+## start game on host and clients
+func _start_game():
+	#TODO add small delay on host to compensate for transmission times on clients?
+	menus.visible = false
+	game.visible = true
+	get_tree().paused = false
 
 
 func _end_game():

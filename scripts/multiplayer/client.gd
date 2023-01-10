@@ -7,6 +7,7 @@ signal disconnected_by_server()
 signal set_lobby_name(lobby_name)
 signal set_remote_players(players)
 signal prepare_game()
+signal start_game()
 
 
 func _ready():
@@ -39,6 +40,11 @@ func stop_connection():
 	players = []
 
 
+func notify_client_ready():
+	# rpc only sent to server
+	rpc_id(1, "set_client_ready")
+
+
 # connection to server successful
 func _connected_ok():
 	pass
@@ -64,3 +70,8 @@ remote func set_remote_players(players):
 remote func prepare_game(player_infos):
 	assert(player_infos.size() == Globals.current_player_amount)
 	emit_signal("prepare_game", player_infos)
+
+
+remote func start_game():
+	emit_signal("start_game")
+	print("Game starting")
