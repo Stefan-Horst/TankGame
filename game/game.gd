@@ -102,6 +102,26 @@ func get_player_infos():
 	return player_infos
 
 
+func init_game_local(players):
+	## reset values (from last game)
+	spawn_positions = []
+	enemies_alive = []
+	actors = []
+	
+	for i in 4 - 1:
+		enemies_alive.append(enemies[i])
+	
+	actors.append(player)
+	actors.append_array(enemies_alive)
+	
+	player.enemies = enemies_alive
+	
+	## init list spawn_positions
+	var sp = map.get_node("SpawnPositions")
+	for i in sp.get_child_count():
+		spawn_positions.append(sp.get_child(i))
+
+
 func _on_shoot_projectile(Projectile, caller, location, direction):
 	## let player only shoot if gun not on cooldown
 	if caller.name == "Player":

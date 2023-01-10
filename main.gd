@@ -30,10 +30,12 @@ func _ready():
 	client.connect("start_game", self, "_start_game")
 
 
+## start singleplayer sandbox
 func _on_MainMenu_start_game():
 	menu_main.visible = false
 	game.visible = true
-	game.init_game(4) #TODO dynamic value
+	game.init_game_local(4)
+	game.start_game()
 	get_tree().paused = false
 
 
