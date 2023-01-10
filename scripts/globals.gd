@@ -9,7 +9,6 @@ enum MENU {
 	GAME_JOIN,
 	GAME_HOST,
 	GAME_LOBBY,
-	INGAME_PAUSE,
 }
 
 const MAX_PLAYERS = 4

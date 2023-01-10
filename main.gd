@@ -4,12 +4,13 @@ extends Node
 onready var game = $Game
 onready var menus = $Menus
 onready var menu_main = menus.get_node("MainMenu")
-onready var menu_pause = menus.get_node("IngamePause")
 onready var menu_lobby = menus.get_node("GameLobby")
+onready var pause_menu = game.get_node("Overlay/IngamePause")
 
 var server = Server.new()
 var client = Client.new()
 var game_active = false
+var pause_menu_active = false
 
 
 func _ready():
@@ -101,6 +102,19 @@ func _prepare_game(player_infos):
 	print("Game loaded with players: " + String(game.get_player_infos()))
 
 
+func _end_game():
+	get_tree().paused = true
+	game.end_game()
+	Globals.current_player_amount = 1
+	game.visible = false
+	menus.visible = true
+	menus.change_to_menu(Globals.MENU.MAIN)
+	
+	if Globals.is_host:
+		server.stop_server()
+		Globals.is_host = false
+
+
 func _on_GameLobby_lobby_exited():
 	Globals.current_player_amount = 1
 	if Globals.is_host:
@@ -117,25 +131,27 @@ func _on_GameLobby_host_start_game():
 	server.start_game(game.get_player_infos())
 
 
-func _on_Pause_quit_game():
-	get_tree().paused = true
-	#game.end_game() necessary here?
-	Globals.current_player_amount = 1
-	menu_pause.visible = false
-	game.visible = false
-	menu_main.visible = true
-	menus.pause_menu_active = false
+## open pause menu when in game
+func _on_show_pause_menu():
+	if not pause_menu_active:
+		# game stays visible in background
+		pause_menu.visible = true
+		pause_menu.btn_continue.grab_focus()
+	else:
+		pause_menu.visible = false
 	
-	if Globals.is_host:
-		server.stop_server()
+	pause_menu_active = not pause_menu_active
+
+
+func _on_Pause_quit_game():
+	pause_menu.visible = false
+	pause_menu_active = false
+	_end_game()
 
 
 func _on_Game_game_ended():
-	get_tree().paused = true
-	Globals.current_player_amount = 1
-	game.visible = false
-	menu_main.visible = true
 	#TODO show post game leaderboard etc
+	_end_game()
 
 
 func _on_MainMenu_quit():

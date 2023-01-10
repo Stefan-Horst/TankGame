@@ -18,6 +18,11 @@ script = ExtResource( 5 )
 pause_mode = 1
 visible = false
 
+[node name="Overlay" type="CanvasLayer" parent="Game"]
+
+[node name="IngamePause" parent="Game/Overlay" instance=ExtResource( 3 )]
+visible = false
+
 [node name="Menus" type="Control" parent="."]
 pause_mode = 2
 anchor_right = 1.0
@@ -38,11 +43,10 @@ visible = false
 [node name="Settings" parent="Menus" instance=ExtResource( 7 )]
 visible = false
 
-[node name="IngamePause" parent="Menus" instance=ExtResource( 3 )]
-visible = false
-
 [connection signal="game_ended" from="Game" to="." method="_on_Game_game_ended"]
-[connection signal="menu_pause" from="Game" to="Menus" method="_on_show_pause_menu"]
+[connection signal="menu_pause" from="Game" to="." method="_on_show_pause_menu"]
+[connection signal="menu_pause" from="Game/Overlay/IngamePause" to="." method="_on_show_pause_menu"]
+[connection signal="quit_game" from="Game/Overlay/IngamePause" to="." method="_on_Pause_quit_game"]
 [connection signal="change_to_menu" from="Menus/MainMenu" to="Menus" method="change_to_menu"]
 [connection signal="quit" from="Menus/MainMenu" to="." method="_on_MainMenu_quit"]
 [connection signal="start_game" from="Menus/MainMenu" to="." method="_on_MainMenu_start_game"]
@@ -56,5 +60,3 @@ visible = false
 [connection signal="host_start_game" from="Menus/GameLobby" to="." method="_on_GameLobby_host_start_game"]
 [connection signal="lobby_exited" from="Menus/GameLobby" to="." method="_on_GameLobby_lobby_exited"]
 [connection signal="back_to_last_menu" from="Menus/Settings" to="Menus" method="back_to_last_menu"]
-[connection signal="menu_pause" from="Menus/IngamePause" to="Menus" method="_on_show_pause_menu"]
-[connection signal="quit_game" from="Menus/IngamePause" to="." method="_on_Pause_quit_game"]
